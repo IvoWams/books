@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Entity\Bankaccount" table="bankaccount">
+        <id name="iban" type="string"/>
+
+        <embedded name="balance" class="App\Entity\Money"/>
+
+        <many-to-many field="parties" target-entity="App\Entity\Party" mapped-by="bankaccounts" fetch="EAGER"/>
+        <one-to-many field="creditTransactions" target-entity="App\Entity\Transaction" mapped-by="creditBankaccount" fetch="EAGER"/>
+        <one-to-many field="debitTransactions" target-entity="App\Entity\Transaction" mapped-by="debitBankaccount" fetch="EAGER"/>
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Entity\Party" table="party">
+        <id name="id" type="guid"/>
+
+        <field name="name"/>
+
+        <many-to-many field="bankaccounts" target-entity="App\Entity\BankAccount" inversed-by="parties" fetch="EAGER">
+            <join-table name="party_bank_account">
+                <join-columns>
+                    <join-column name="party_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="bank_account_id" referenced-column-name="iban" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+    </entity>
+</doctrine-mapping>

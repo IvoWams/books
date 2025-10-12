@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Entity\Transaction" table="transaction">
+        <id name="id" type="guid" column="id"/>
+
+        <many-to-one field="debitBankaccount" target-entity="App\Entity\Bankaccount" inversed-by="transactions" fetch="EAGER">
+            <join-column name="debitbankaccount_id" referenced-column-name="iban" nullable="false"/>
+        </many-to-one>
+
+        <many-to-one field="creditBankaccount" target-entity="App\Entity\Bankaccount" inversed-by="transactions" fetch="EAGER">
+            <join-column name="creditbankaccount_id" referenced-column-name="iban" nullable="false"/>
+        </many-to-one>
+
+        <embedded name="amount" class="App\Entity\Money"/>
+
+        <field name="date" type="datetime_immutable"/>
+
+    </entity>
+</doctrine-mapping>
