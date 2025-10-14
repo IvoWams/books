@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use DateTimeImmutable;
 use Symfony\Component\Uid\Uuid;
 
+#[ApiResource]
 class Transaction
 {
     private string $id;

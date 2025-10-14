@@ -10,7 +10,7 @@
 
         <field name="name"/>
 
-        <many-to-many field="bankaccounts" target-entity="App\Entity\BankAccount" inversed-by="parties" fetch="EAGER">
+        <many-to-many field="bankaccounts" target-entity="App\Entity\Bankaccount" inversed-by="parties" fetch="EAGER">
             <join-table name="party_bank_account">
                 <join-columns>
                     <join-column name="party_id" referenced-column-name="id" />
